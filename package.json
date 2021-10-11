@@ -1,0 +1,29 @@
+{
+  "name": "metho",
+  "version": "0.0.1",
+  "description": "Metho - A new method for methods",
+  "main": "metho.js",
+  "type": "module",
+  "module": "metho.js",
+  "sideEffects": false,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jonrandy/metho.git"
+  },
+  "keywords": [
+    "js",
+    "javascript",
+    "methods",
+    "object",
+    "syntax"
+  ],
+  "author": "Jon Randy",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jonrandy/metho/issues"
+  },
+  "homepage": "https://metho.js.org"
+}
