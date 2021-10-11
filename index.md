@@ -1,3 +1,5 @@
+# Metho
+
 ## TL;DR
 [Metho](https://github.com/jonrandy/metho) allows you to easily and safely add methods in the form of dynamic properties to any object. Sounds boring, but if used to extend native types, it allows for the construction of JS expressions with a somewhat unique syntax:
 ```js
