@@ -59,7 +59,7 @@ Unfortunately, by using a property getter we've just created a problem for ourse
 has a function call in the place where we previously had a `Symbol`. We effectively want to pass parameters into a 'getter' function - something we can't do.
 
 I almost gave up at this point, but then I thought:
-> “What if `to` was a function that returned a symbol that was the 'name' of a method that had been dynamically created as property getter on the target object by `to`, for our purposes? Then, this getter would immediately be called automatically because the returned symbol appears as the key in a bracket notation property-access of the object”
+> “What if `to` was a function that returned a symbol that was the 'name' of a method that had been dynamically created as a property getter on the target object by `to`, for our purposes? Then, this getter would immediately be called automatically because the returned symbol appears as the key in a bracket notation property-access of the object”
 
 (Yes, I'm a hoot at parties)
 
