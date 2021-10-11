@@ -71,6 +71,7 @@ function addWithParams(target, method) {
   return(function(...args) {
     const s = Symbol()
     Object.defineProperty(target, s, {
+      configurable: true,
       get: function() {
         delete target[s]
         return method.apply(this, args)
