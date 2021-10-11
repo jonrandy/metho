@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+</head>
+<body>
+
+
+	<script type="module">
+		import * as Metho from "./metho.js"
+
+		const hex = Metho.add(Number.prototype, function() { return this.toString(16) })
+
+		const to = Metho.add(
+			Number.prototype,
+			function(end, {step} = {step: this<=end?1:-1}) {
+				let arr = [], i, d = end>this
+				for (i=+this; d?(i<=end):(i>=end); i+=step) arr.push(i)
+				return arr
+			}
+		)
+
+		console.log(254[hex])
+		console.log(3[to(9)])
+
+	</script>
+
+</body>
+</html>
