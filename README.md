@@ -1,4 +1,42 @@
-# Metho
-A new method for methods
+# Metho - A new method for methods
 
-Full docs coming soon...
+A small library to allow you to safely add 'dynamic properties' to objects, with the help of Symbols. This is useful for 'monkey patching' native JavaScript types to give them new capabilities. Some examples:
+
+```js
+import * as Metho from 'metho'
+
+const asHex = Metho.add(
+  Number.prototype,
+  function() { return this.toString(16) }
+)
+
+console.log(65534[asHex])  // fffe
+
+const upper = Metho.add(
+  String.prototype,
+  function() { return this.toUpperCase() }
+)
+const chunk = Metho.add(
+  String.prototype,
+  function(length) {
+    return this.match(new RegExp('.{1,' + length + '}', 'g'))
+  }
+)
+
+console.log("Hello World!"[upper][chunk(2)])  // ['HE', 'LL', 'O ', 'WO', 'RL', 'D!']
+```
+
+## How to use
+
+Metho is fairly simple, and offers 4 basic functions for adding these 'dynamic properties' to your target object:
+
+### `add(target, function, [outerSyntax = false])`
+This is probably the function you'll need most often. It will use from `addWithParams` or `addSimple` based on the arity of the passed function - an arity of 0 will cause `addSimple` to be used, anything else will cause `addWithParams` or `addProperty` to be used - based upon the state of `outerSyntax`. When added with `outerSyntax` set to `true` - the syntax for your property will be that of a more regular function call:
+```js
+// outerSyntax = false
+object[property(x)]
+
+// outerSyntax = true
+object[property](x)
+```
+There is a slight performance hit when not using `outerSyntax` - hence the reason for the switch.
