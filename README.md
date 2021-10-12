@@ -56,5 +56,5 @@ console.log(object[property])
 ### `addWithParams(target, function)`
 Adds a regular property to the target (will not be automatically called if it is a function)
 ```js
-console.log(object[property]
+console.log(object[property])
 ```
