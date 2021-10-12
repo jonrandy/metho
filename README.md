@@ -28,7 +28,7 @@ console.log("Hello World!"[upper][chunk(2)])  // ['HE', 'LL', 'O ', 'WO', 'RL', 
 
 ## How to use
 
-Metho is fairly simple, and offers 4 basic functions for adding these 'dynamic properties' to your target object:
+Metho is fairly simple, and offers 4 basic functions for adding these 'dynamic properties' to your target object. All functions will return either a Symbol, or a function that returns a Symbol. These Symbols are the property 'names'.
 
 ### `add(target, function, [outerSyntax = false])`
 This is probably the function you'll need most often. It will use from `addWithParams` or `addSimple` based on the arity of the passed function - an arity of 0 will cause `addSimple` to be used, anything else will cause `addWithParams` or `addProperty` to be used - based upon the state of `outerSyntax`. When added with `outerSyntax` set to `true` - the syntax for your property will be that of a more regular function call:
@@ -40,3 +40,21 @@ object[property(x)]
 object[property](x)
 ```
 There is a slight performance hit when not using `outerSyntax` - hence the reason for the switch.
+
+### `addWithParams(target, function)`
+Adds a 'dynamic property` that can accept parameters
+```js
+console.log(object[property(param1, param2)]
+```
+
+### `addSimple(target, function)`
+Adds a 'dynamic property` that has no parameters
+```js
+console.log(object[property])
+```
+
+### `addWithParams(target, function)`
+Adds a regular property to the target (will not be automatically called if it is a function)
+```js
+console.log(object[property]
+```
