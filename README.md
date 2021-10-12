@@ -53,7 +53,7 @@ Adds a 'dynamic property` that has no parameters
 console.log(object[property])
 ```
 
-### `addWithParams(target, function)`
+### `addProperty(target, propertyValue)`
 Adds a regular property to the target (will not be automatically called if it is a function)
 ```js
 console.log(object[property])
