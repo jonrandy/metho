@@ -32,7 +32,7 @@ However, it's generally accepted that modifying these native types is not a good
 
 ### Step 1: 'Safe' monkey patching
 
-What if you could add a method to an object in such a way that it wouldn't conflict with any existing methods, or with future methods that might be added? Well, you can - using `Symbol`s. These are a relatively new addition to JS, but are extremely useful. Essentially what a `Symbol` is is a totally unique value - nothing else is equal to it, or can be ever equal to it. They are created like this:
+What if you could add a method to an object in such a way that it wouldn't conflict with any existing methods, or with future methods that might be added? Well, you can - using `Symbol`s. These are a relatively new addition to JS, but are extremely useful. Essentially, a `Symbol` is a totally unique value - nothing else is equal to it, or can be ever equal to it. They are created like this:
 ```js
 const mySymbol = Symbol('My symbol description')
 ```
@@ -59,7 +59,7 @@ Unfortunately, by using a property getter we've just created a problem for ourse
 has a function call in the place where we previously had a `Symbol`. We effectively want to pass parameters into a 'getter' function - something we can't do.
 
 I almost gave up at this point, but then I thought:
-> “What if `to` was a function that returned a symbol that was the 'name' of a method that had been dynamically created as a property getter on the target object by `to`, for our purposes? Then, this getter would immediately be called automatically because the returned symbol appears as the key in a bracket notation property-access of the object”
+> “What if `to` was a function that returned a symbol that was the 'name' of a method that had been dynamically created as  a property getter on the target object by `to`, for our purposes? Then, this getter would immediately be called automatically because the returned symbol appears as the key in a bracket notation property-access of the object”
 
 (Yes, I'm a hoot at parties)
 
@@ -81,7 +81,7 @@ function addWithParams(target, method) {
   })
 }
 ```
-This obviously creates an additional overhead when calling methods that use this syntax, so if performance is an issue it may be better to sacrifice the nice syntax for a method stored as a regular property (this is also possible with Metho). In the case of `to` - you would end up with:
+This obviously creates an additional overhead when calling methods that use this syntax, so if performance is an issue it may be better to sacrifice the nice syntax for a method stored as a regular property (something that is also possible with Metho). In the case of `to` - you would end up with:
 ```js
 1[to](3)  // [1, 2, 3]
 ```
@@ -105,6 +105,16 @@ console.log(7[to(4)])  // [7, 6, 5, 4]
 console.log(2[to(10), {step: 2})  // [2, 4, 6, 8, 10]
 ```
 This is a quick and dirty example - and probably not the best implementation of the range function, but you get the idea.
+
+Similarly, a simple 'hex' property for numbers could be implemented thus:
+```js
+const hex = Metho.add(
+  Number.prototype,
+  function() { return this.toString(16) }
+)
+
+console.log(65535[hex]) // 'ffff'
+```
 
 
 ## What's next?
