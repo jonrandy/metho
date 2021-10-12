@@ -1,8 +1,8 @@
-# Metho
+# Metho: Safely adding superpowers to JS
 
 ## TL;DR
 [Metho](https://github.com/jonrandy/metho) allows you to easily and safely add methods in the form of dynamic properties to any object. Sounds boring, but if used to extend native types, it allows for the construction of JS expressions with a somewhat unique syntax:
-```js
+```jsx
 // Add a range syntax to numbers
 1[to(9)]  // [1, 2, 3, 4, 5, 6, 7, 8, 9]
 
@@ -14,6 +14,9 @@
 
 // Repeat stuff
 5[times(myFunction)]  // run myFunction 5 times
+
+// Use with JSX
+10[of(<div>Hello</div>)]  // 10 divs
 
 // Go nuts!
 'hello!'[titleCase][reverse][chunk(2)]  // ['!o', 'll', 'eH']
