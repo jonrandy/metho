@@ -6,8 +6,10 @@
   "type": "module",
   "module": "metho.js",
   "sideEffects": false,
+  "types": "index.d.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "tsd": "npx tsd"
   },
   "repository": {
     "type": "git",
@@ -25,5 +27,8 @@
   "bugs": {
     "url": "https://github.com/jonrandy/metho/issues"
   },
-  "homepage": "https://metho.js.org"
+  "homepage": "https://metho.js.org",
+  "devDependencies": {
+    "tsd": "^0.18.0"
+  }
 }
