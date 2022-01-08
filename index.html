@@ -24,6 +24,18 @@
 		console.log(254[hex])
 		console.log(3[to(9)])
 
+		const multiFunc = function(t) {
+			return this[Metho.data] + ' --- ' + t
+		}
+
+		Array.prototype[Metho.data] = "array"
+		String.prototype[Metho.data] = "string"
+		const multi = Metho.add([Array.prototype, String.prototype], multiFunc, true)
+
+		console.log('Jon'[multi](111))
+		console.log([][multi](222))
+
+
 	</script>
 
 </body>
