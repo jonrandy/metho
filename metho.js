@@ -19,18 +19,20 @@ export function addProperty(targetOrTargets, f) {
 }
 
 // TODO - make this accept multiple targets (maybe make a property of the returned function an array of targets - so it can be changed)
-export function addWithParams(target, f) {
-  return(function(...args) {
+export function addWithParams(targetOrTargets, f) {
+  const __methoIntermediate = function(...args) {
     const s = Symbol()
-    Object.defineProperty(target, s, {
+    Object.defineProperty(targetOrTargets, s, {
       configurable: true,
       get: function() {
-        delete target[s]
+        delete targetOrTargets[s]
         return f.apply(this, args)
       }
     })
     return s
-  })
+  }
+  __methoIntermediate.targets = sanitiseTargets(targetOrTargets)
+  return __methoIntermediate
 }
 
 export function addSimple(targetOrTargets, f) {
