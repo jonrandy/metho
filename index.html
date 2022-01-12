@@ -30,12 +30,14 @@
 
 		Array.prototype[Metho.data] = "array"
 		String.prototype[Metho.data] = "string"
-		const multi = Metho.add([Array.prototype, String.prototype], multiFunc, true)
+		const multi = Metho.add([Array.prototype, String.prototype], multiFunc)
 
-		console.log('Jon'[multi](111))
-		console.log([][multi](222))
+		console.log('Jon'[multi(111)])
+		console.log([][multi(222)])
 
-		console.log(to.targets)
+		console.log(multi.targets)
+
+		window.ddd = multi
 
 
 	</script>
