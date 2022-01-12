@@ -18,7 +18,6 @@ export function addProperty(targetOrTargets, f) {
   return s
 }
 
-// TODO - make this accept multiple targets (maybe make a property of the returned function an array of targets - so it can be changed)
 export function addWithParams(targetOrTargets, f) {
   const buildTempMethod = function __methoIntermediate(...args) {
     const s = Symbol()
