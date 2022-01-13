@@ -10,7 +10,8 @@
 	<script type="module">
 		import * as Metho from "./metho.js"
 
-		const hex = Metho.add(Number.prototype, function() { return this.toString(16) })
+		const hex = Metho.add(Number.prototype, function hex() { return this.toString(16) })
+		const oct = Metho.add(Number.prototype, function oct() { return this.toString(8) }, {symbolName:'octal'})
 
 		const to = Metho.add(
 			Number.prototype,
@@ -30,7 +31,10 @@
 
 		Array.prototype[Metho.data] = "array"
 		String.prototype[Metho.data] = "string"
-		const multi = Metho.add([Array.prototype, String.prototype], multiFunc)
+		const multi = Metho.add([Array.prototype, String.prototype], multiFunc, {symbolName:"kumquat"})
+
+		console.log(hex)
+		console.log(oct)
 
 		console.log('Jon'[multi(111)])
 		console.log([][multi(222)])

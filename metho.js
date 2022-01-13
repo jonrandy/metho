@@ -2,25 +2,25 @@ export const data = Symbol('methoData')
 
 // TODO - optionally store created symbols/funcs in a registry so we can check if something already defined (do we need this?)
 
-export function add(targetOrTargets, f, outerSyntax=false){
+export function add(targetOrTargets, f, {outerSyntax=false, symbolName=f?.name}={}){
   return f.length ?
     outerSyntax ?
-      addProperty(targetOrTargets, f)
+      addProperty(targetOrTargets, f, {symbolName})
     :
-      addWithParams(targetOrTargets, f)
+      addWithParams(targetOrTargets, f, {symbolName})
   :
-    addSimple(targetOrTargets, f)
+    addSimple(targetOrTargets, f, {symbolName})
 }
 
-export function addProperty(targetOrTargets, f) {
-  const s = Symbol()
+export function addProperty(targetOrTargets, f, {symbolName = f?.name}={}) {
+  const s = Symbol(symbolName)
   sanitiseTargets(targetOrTargets).forEach(target => target[s] = f)
   return s
 }
 
-export function addWithParams(targetOrTargets, f) {
+export function addWithParams(targetOrTargets, f, {symbolName = f?.name}={}) {
   const buildTempMethod = function __methoIntermediate(...args) {
-    const s = Symbol()
+    const s = Symbol(symbolName)
     const targets = __methoIntermediate.targets
     targets.forEach(target => {
       Object.defineProperty(target, s, {
@@ -37,8 +37,8 @@ export function addWithParams(targetOrTargets, f) {
   return buildTempMethod
 }
 
-export function addSimple(targetOrTargets, f) {
-  const s = Symbol()
+export function addSimple(targetOrTargets, f, {symbolName = f?.name}={}) {
+  const s = Symbol(symbolName)
   sanitiseTargets(targetOrTargets).forEach(target => Object.defineProperty(target, s, { configurable:true, get: f}))
   return s
 }
