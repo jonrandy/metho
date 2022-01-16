@@ -19,22 +19,25 @@ export function addProperty(targetOrTargets, f, {symbolName = f?.name}={}) {
 }
 
 export function addWithParams(targetOrTargets, f, {symbolName = f?.name}={}) {
-  const buildTempMethod = function __methoIntermediate(...args) {
-    const s = Symbol(symbolName)
-    const targets = __methoIntermediate.targets
-    targets.forEach(target => {
-      Object.defineProperty(target, s, {
-        configurable: true,
-        get: function() {
-          targets.forEach(target => { delete target[s] })
-          return f.apply(this, args)
-        }
+  const methodName = symbolName || '__methoIntermediate'
+  const buildTempMethod = {
+    [methodName]: function (...args) {
+      const s = Symbol(symbolName)
+      const targets = __methoIntermediate.targets
+      targets.forEach(target => {
+        Object.defineProperty(target, s, {
+          configurable: true,
+          get: function() {
+            targets.forEach(target => { delete target[s] })
+            return f.apply(this, args)
+          }
+        })
       })
-    })
-    return s
+      return s
+    }
   }
-  buildTempMethod.targets = sanitiseTargets(targetOrTargets)
-  return buildTempMethod
+  buildTempMethod[methodName].targets = sanitiseTargets(targetOrTargets)
+  return buildTempMethod[methodName]
 }
 
 export function addSimple(targetOrTargets, f, {symbolName = f?.name}={}) {
