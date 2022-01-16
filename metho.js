@@ -1,38 +1,52 @@
-export function add(target, f, outerSyntax=false){
+export const data = Symbol('methoData')
+
+// TODO - optionally store created symbols/funcs in a registry so we can check if something already defined (do we need this?)
+
+export function add(targetOrTargets, f, {outerSyntax=false, symbolName=f?.name}={}){
   return f.length ?
     outerSyntax ?
-      addProperty(target, f)
+      addProperty(targetOrTargets, f, {symbolName})
     :
-      addWithParams(target, f)
+      addWithParams(targetOrTargets, f, {symbolName})
   :
-    addSimple(target, f)
+    addSimple(targetOrTargets, f, {symbolName})
 }
 
-export function addProperty(target, f) {
-  const s = Symbol()
-  target[s] = f
+export function addProperty(targetOrTargets, f, {symbolName = f?.name}={}) {
+  const s = Symbol(symbolName)
+  sanitiseTargets(targetOrTargets).forEach(target => target[s] = f)
   return s
 }
 
-export function addWithParams(target, f) {
-  return(function(...args) {
-    const s = Symbol()
-    Object.defineProperty(target, s, {
-      configurable: true,
-      get: function() {
-        delete target[s]
-        return f.apply(this, args)
-      }
-    })
-    return s
-  })
+export function addWithParams(targetOrTargets, f, {symbolName = f?.name}={}) {
+  const methodName = symbolName || '__methoIntermediate'
+  const buildTempMethod = {
+    [methodName]: function (...args) {
+      const s = Symbol(symbolName)
+      const targets = __methoIntermediate.targets
+      targets.forEach(target => {
+        Object.defineProperty(target, s, {
+          configurable: true,
+          get: function() {
+            targets.forEach(target => { delete target[s] })
+            return f.apply(this, args)
+          }
+        })
+      })
+      return s
+    }
+  }
+  buildTempMethod[methodName].targets = sanitiseTargets(targetOrTargets)
+  return buildTempMethod[methodName]
 }
 
-export function addSimple(target, f) {
-  const s = Symbol()
-  Object.defineProperty(target, s, { configurable:true, get: f})
+export function addSimple(targetOrTargets, f, {symbolName = f?.name}={}) {
+  const s = Symbol(symbolName)
+  sanitiseTargets(targetOrTargets).forEach(target => Object.defineProperty(target, s, { configurable:true, get: f}))
   return s
 }
+
+const sanitiseTargets = targets => Array.isArray(targets) ? targets : [targets]
 
 
 // may well need the ability to add descriptions for these Symbols that are flying around
