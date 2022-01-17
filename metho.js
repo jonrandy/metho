@@ -23,7 +23,7 @@ export function addWithParams(targetOrTargets, f, {symbolName = f?.name}={}) {
   const buildTempMethod = {
     [methodName]: function (...args) {
       const s = Symbol(symbolName)
-      const targets = __methoIntermediate.targets
+      const targets = buildTempMethod[methodName].targets
       targets.forEach(target => {
         Object.defineProperty(target, s, {
           configurable: true,
