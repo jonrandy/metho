@@ -7,7 +7,7 @@
   "module": "metho.js",
   "sideEffects": false,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -26,5 +26,10 @@
   "bugs": {
     "url": "https://github.com/jonrandy/metho/issues"
   },
-  "homepage": "https://metho.js.org"
+  "homepage": "https://metho.js.org",
+  "devDependencies": {
+    "@babel/preset-env": "^7.16.11",
+    "babel-jest": "^27.4.6",
+    "jest": "^27.4.7"
+  }
 }
