@@ -49,7 +49,8 @@ export function addSimple(targetOrTargets, f, {symbolName = f?.name, register=fa
   return s
 }
 
-const sanitiseTargets = targets => Array.isArray(targets) ? targets : [targets]
+export const registered = name => registry[name]
 
+const sanitiseTargets = targets => Array.isArray(targets) ? targets : [targets]
 const addToRegister = (name, item) => registry[name] = item
 
