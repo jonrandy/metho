@@ -1,24 +1,24 @@
 export const data = Symbol('methoData')
 
-// TODO - optionally store created symbols/funcs in a registry so we can check if something already defined (do we need this?)
+const registry = {}
 
-export function add(targetOrTargets, f, {outerSyntax=false, symbolName=f?.name}={}){
+export function add(targetOrTargets, f, {outerSyntax=false, symbolName=f?.name, register=false}={}){
   return f.length ?
     outerSyntax ?
-      addProperty(targetOrTargets, f, {symbolName})
+      addProperty(targetOrTargets, f, {symbolName, register})
     :
-      addWithParams(targetOrTargets, f, {symbolName})
+      addWithParams(targetOrTargets, f, {symbolName, register})
   :
-    addSimple(targetOrTargets, f, {symbolName})
+    addSimple(targetOrTargets, f, {symbolName, register})
 }
 
-export function addProperty(targetOrTargets, f, {symbolName = f?.name}={}) {
+export function addProperty(targetOrTargets, f, {symbolName = f?.name, register=false}={}) {
   const s = Symbol(symbolName)
   sanitiseTargets(targetOrTargets).forEach(target => target[s] = f)
   return s
 }
 
-export function addWithParams(targetOrTargets, f, {symbolName = f?.name}={}) {
+export function addWithParams(targetOrTargets, f, {symbolName = f?.name, register=false}={}) {
   const methodName = symbolName || '__methoIntermediate'
   const buildTempMethod = {
     [methodName]: function (...args) {
@@ -40,7 +40,7 @@ export function addWithParams(targetOrTargets, f, {symbolName = f?.name}={}) {
   return buildTempMethod[methodName]
 }
 
-export function addSimple(targetOrTargets, f, {symbolName = f?.name}={}) {
+export function addSimple(targetOrTargets, f, {symbolName = f?.name, register=false}={}) {
   const s = Symbol(symbolName)
   sanitiseTargets(targetOrTargets).forEach(target => Object.defineProperty(target, s, { configurable:true, get: f}))
   return s
@@ -48,5 +48,3 @@ export function addSimple(targetOrTargets, f, {symbolName = f?.name}={}) {
 
 const sanitiseTargets = targets => Array.isArray(targets) ? targets : [targets]
 
-
-// may well need the ability to add descriptions for these Symbols that are flying around
