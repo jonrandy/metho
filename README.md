@@ -31,7 +31,7 @@ console.log("Hello World!"[upper][chunk(2)])  // ['HE', 'LL', 'O ', 'WO', 'RL', 
 Metho is fairly simple, and offers 4 basic functions for adding these 'dynamic properties' to your target object(s). All functions will return either a Symbol, or a function that returns a Symbol. These Symbols are the property 'names'.
 
 ### `add(targetOrTargets, function, [options={}])`
-This is probably the function you'll need most often. It will use from `addWithParams` or `addSimple` based on the arity of the passed function - an arity of 0 will cause `addSimple` to be used, anything else will cause `addWithParams` or `addProperty` to be used - based upon the state of `outerSyntax`. When added with option `outerSyntax` set to `true` - the syntax for your property will be that of a more regular function call:
+This is probably the function you'll need most often. It will use from `addWithParams` or `addSimple` based on the number of arguments the passed function expects - 0 will cause `addSimple` to be used, anything else will cause `addWithParams` or `addProperty` to be used - based upon the state of `outerSyntax`. When added with option `outerSyntax` set to `true` - the syntax for your property will be that of a more regular function call:
 ```js
 // options.outerSyntax = false
 object[property(x)]
@@ -40,6 +40,8 @@ object[property(x)]
 object[property](x)
 ```
 There is a slight performance hit when not using `outerSyntax` - hence the reason for the switch. To specify more than one target for the function, you should pass an array of targets.
+
+**Important note** - it has been pointed out that functions with a default argument(s) that start from the first argument do not seem to work correctly with the `add` method. Whilst they do *seem* to behave oddly, they are actually behaving correctly as they do not actually *expect* any arguments (for a clearer explanation, see the information about [`function.length`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/length) on MDN). If you want to add such methods you should use the `addWithParams` method directly.
 
 ### `addWithParams(targetOrTargets, function, [options={}])`
 Adds a 'dynamic property` that can accept parameters
