@@ -10,7 +10,9 @@
 	<script type="module">
 		import * as Metho from "./metho.js"
 
-		const hex = Metho.add(Number.prototype, function hex() { return this.toString(16) })
+		const hexxy = Symbol('hexxy')
+
+		const hex = Metho.add(Number.prototype, function hex() { return this.toString(16) }, {useSymbol: hexxy})
 		const oct = Metho.add(Number.prototype, function oct() { return this.toString(8) }, {symbolName:'octal', register:true})
 
 		const to = Metho.add(
