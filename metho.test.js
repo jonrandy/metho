@@ -1,15 +1,28 @@
 import * as Metho from './metho.js'
 
 describe("metho library", () => {
+  it("should export a data Symbol", () => {
+    expect(Metho.data).not.toBeUndefined()
+  })
+
   it("should augment multiple prototypes", () => {
-    const nonHash = Symbol("No hash")
-    const constHash = Metho.add(
-      [Number.prototype, String.prototype],
-      () => nonHash,
+    const multiFunc = function (t) {
+      return this[Metho.data] + ' --- ' + t
+    }
+    const multi = Metho.add(
+      [Array.prototype, String.prototype],
+      multiFunc,
+      { symbolName: "kumquat" },
     )
 
-    expect(12345[constHash]).toBe(nonHash)
-    expect("this is a string"[constHash]).toBe(nonHash)
+    Array.prototype[Metho.data] = "array"
+    String.prototype[Metho.data] = "string"
+
+    expect("Jon"[multi(111)]).toBe("string --- 111")
+    expect([][multi(222)]).toBe("array --- 222")
+
+    expect(multi.targets.map((target) => target.constructor.name).sort())
+      .toEqual(["Array", "String"])
   })
 
   describe("add", () => {
@@ -31,7 +44,7 @@ describe("metho library", () => {
       expect(65534[asHex]).toBe("fffe")
     })
 
-    it("should augment a single prototype (outer)", () => {
+    it("should augment a single prototype (outerSyntax: false)", () => {
       const chunk = Metho.add(
         String.prototype,
         function(length) {
@@ -43,7 +56,7 @@ describe("metho library", () => {
         .toEqual(["He", "ll", "o ", "Wo", "rl", "d!"])
     })
 
-    it("should augment a single prototype (outer)", () => {
+    it("should augment a single prototype (outerSyntax: true)", () => {
       const chunk = Metho.add(
         String.prototype,
         function(length) {
@@ -54,6 +67,17 @@ describe("metho library", () => {
 
       expect("Hello World!"[chunk](2))
         .toEqual(["He", "ll", "o ", "Wo", "rl", "d!"])
+    })
+
+    it("should use the provided symbolName", () => {
+      const symbolName = "octal"
+      const oct = Metho.add(
+        Number.prototype,
+        function oct() { return this.toString(8) },
+        { symbolName },
+      )
+
+      expect(oct.toString()).toBe(Symbol(symbolName).toString())
     })
   })
 
