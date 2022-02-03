@@ -11,7 +11,7 @@
 		import * as Metho from "./metho.js"
 
 		const hex = Metho.add(Number.prototype, function hex() { return this.toString(16) })
-		const oct = Metho.add(Number.prototype, function oct() { return this.toString(8) }, {symbolName:'octal'})
+		const oct = Metho.add(Number.prototype, function oct() { return this.toString(8) }, {symbolName:'octal', register:true})
 
 		const to = Metho.add(
 			Number.prototype,
@@ -31,7 +31,11 @@
 
 		Array.prototype[Metho.data] = "array"
 		String.prototype[Metho.data] = "string"
-		const multi = Metho.add([Array.prototype, String.prototype], multiFunc, {symbolName:"kumquat"})
+		const multi = Metho.add([Array.prototype, String.prototype], multiFunc, {symbolName:"kumquat", register:true})
+
+		console.log(`Registered (hex): ${Metho.registered('hex')?.toString()}`)
+		console.log(`Registered (octal): ${Metho.registered('octal')?.toString()}`)
+		console.log(`Registered (kumquat): ${Metho.registered('kumquat')?.toString()}`)
 
 		console.log(hex)
 		console.log(oct)
