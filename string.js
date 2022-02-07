@@ -25,5 +25,19 @@ export { noParams }
 
 
 // params
+let multiParams
 registered = Metho.registered("shared-params")
+const paramsFunction = function(t) {
+  return 'Multi target function with params - ' + this[Metho.data] + ' --- ' + t
+}
 
+if (registered) {
+  console.log('(string) shared-params already registered, just going to add target')
+  multiParams = registered
+  multiParams.targets = [...new Set([...multiParams.targets, target])]
+} else {
+  console.log('(string) shared-params not registered, creating new symbol and registering')
+  multiParams = Metho.add(target, paramsFunction, {register:true, symbolName: "shared-params"})
+}
+
+export { multiParams }

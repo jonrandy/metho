@@ -9,12 +9,19 @@
 
 	<script type="module">
 		import * as Metho from "./metho.js"
-		import { noParams } from "./string.js"
-		import "./array.js"
+		import { noParams, multiParams } from "./array.js"
+		import "./string.js"
 
 		let a = [], b = ""
 		console.log(a[noParams])
 		console.log(b[noParams])
+
+		console.log(a[multiParams(111)])
+		console.log(b[multiParams(222)])
+
+		window.multiParams = multiParams
+
+
 
 		// const hexxy = Symbol('hexxy')
 
