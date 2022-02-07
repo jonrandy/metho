@@ -74,14 +74,11 @@ export function addSimple(
 
 export const registered = name => registry[name]
 
-const sanitiseTargets = targets => [targets].flat()
-
+const sanitiseTargets = targets => (Array.isArray(targets) && targets.prototype) ? targets : [targets]
 const addToRegister = (name, item) => (registry[name] = item)
 
 // TODO - see below for stuff necessary for upcoming method 'name' sharing between metho-string and metho-array,
 // whilst retaining ability for each module to be use separately without polluting the other's target prototype
-
-// add a 'useSymbol' option - will use given symbol if specified, instead of creating new one
 
 // Pseudo code for adding a shared metho method (might already be registered elsewhere)
 
