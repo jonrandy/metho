@@ -9,45 +9,51 @@
 
 	<script type="module">
 		import * as Metho from "./metho.js"
+		import { noParams } from "./string.js"
+		import "./array.js"
 
-		const hexxy = Symbol('hexxy')
+		let a = [], b = ""
+		console.log(a[noParams])
+		console.log(b[noParams])
 
-		const hex = Metho.add(Number.prototype, function hex() { return this.toString(16) }, {useSymbol: hexxy})
-		const oct = Metho.add(Number.prototype, function oct() { return this.toString(8) }, {symbolName:'octal', register:true})
+		// const hexxy = Symbol('hexxy')
 
-		const to = Metho.add(
-			Number.prototype,
-			function(end, {step} = {step: this<=end?1:-1}) {
-				let arr = [], i, d = end>this
-				for (i=+this; d?(i<=end):(i>=end); i+=step) arr.push(i)
-				return arr
-			}
-		)
+		// const hex = Metho.add(Number.prototype, function hex() { return this.toString(16) }, {useSymbol: hexxy})
+		// const oct = Metho.add(Number.prototype, function oct() { return this.toString(8) }, {symbolName:'octal', register:true})
 
-		console.log(254[hex])
-		console.log(3[to(9)])
+		// const to = Metho.add(
+		// 	Number.prototype,
+		// 	function(end, {step} = {step: this<=end?1:-1}) {
+		// 		let arr = [], i, d = end>this
+		// 		for (i=+this; d?(i<=end):(i>=end); i+=step) arr.push(i)
+		// 		return arr
+		// 	}
+		// )
 
-		const multiFunc = function(t) {
-			return this[Metho.data] + ' --- ' + t
-		}
+		// console.log(254[hex])
+		// console.log(3[to(9)])
 
-		Array.prototype[Metho.data] = "array"
-		String.prototype[Metho.data] = "string"
-		const multi = Metho.add([Array.prototype, String.prototype], multiFunc, {symbolName:"kumquat", register:true})
+		// const multiFunc = function(t) {
+		// 	return this[Metho.data] + ' --- ' + t
+		// }
 
-		console.log(`Registered (hex): ${Metho.registered('hex')?.toString()}`)
-		console.log(`Registered (octal): ${Metho.registered('octal')?.toString()}`)
-		console.log(`Registered (kumquat): ${Metho.registered('kumquat')?.toString()}`)
+		// Array.prototype[Metho.data] = "array"
+		// String.prototype[Metho.data] = "string"
+		// const multi = Metho.add([Array.prototype, String.prototype], multiFunc, {symbolName:"kumquat", register:true})
 
-		console.log(hex)
-		console.log(oct)
+		// console.log(`Registered (hex): ${Metho.registered('hex')?.toString()}`)
+		// console.log(`Registered (octal): ${Metho.registered('octal')?.toString()}`)
+		// console.log(`Registered (kumquat): ${Metho.registered('kumquat')?.toString()}`)
 
-		console.log('Jon'[multi(111)])
-		console.log([][multi(222)])
+		// console.log(hex)
+		// console.log(oct)
 
-		console.log(multi.targets)
+		// console.log('Jon'[multi(111)])
+		// console.log([][multi(222)])
 
-		window.ddd = multi
+		// console.log(multi.targets)
+
+		// window.ddd = multi
 
 
 	</script>
