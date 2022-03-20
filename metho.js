@@ -77,6 +77,25 @@ export const registered = name => registry[name]
 const sanitiseTargets = targets => (Array.isArray(targets) && targets.prototype) ? targets : [targets]
 const addToRegister = (name, item) => (registry[name] = item)
 
+export function addWithSharedSymbolName(target, func, symbolName) {
+	const isRegistered = registered(symbolName)
+	let ret
+	if (isRegistered) {
+		if (!func.length) {
+			// if already registerd and no params, re-use symbol
+			ret = add(target, func, { useSymbol: isRegistered })
+		} else {
+			// else if already registered and has params, don't overwrite function, just update targets (function will have to deal with both targets)
+			ret = isRegistered
+			ret.targets = [...new Set([...ret.targets, target])]
+		}
+	} else {
+		// if not registered, create a new Symbol and register it
+		ret = add(target, func, { register: true, symbolName })
+	}
+	return ret
+}
+
 // TODO - see below for stuff necessary for upcoming method 'name' sharing between metho-string and metho-array,
 // whilst retaining ability for each module to be use separately without polluting the other's target prototype
 
