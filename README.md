@@ -31,7 +31,7 @@ console.log("Hello World!"[upper][chunk(2)])  // ['HE', 'LL', 'O ', 'WO', 'RL', 
 Metho is fairly simple, and offers 4 basic functions for adding these 'dynamic properties' to your target object(s). All functions will return either a Symbol, or a function that returns a Symbol. These Symbols are the property 'names'.
 
 ### `add(targetOrTargets, function, [options={}])`
-This is probably the function you'll need most often. It will use either `addWithParams` or `addSimple` based on the number of arguments the passed function expects - 0 will cause `addSimple` to be used, anything else will cause `addWithParams` or `addProperty` to be used - based upon the state of `outerSyntax`. When added with option `outerSyntax` set to `true` - the syntax for your property will be that of a more regular function call:
+This is probably the function you'll need most often. It will use either `addWithParams` or `addSimple` based on the number of arguments the passed function expects - 0 will cause `addSimple` to be used, anything else will cause `addWithParams` or `addProperty` to be used - based upon the state of the `outerSyntax` option. When added with `outerSyntax` set to `true` - the syntax for your property will be that of a more regular function call:
 ```js
 // options.outerSyntax = false
 object[property(x)]
@@ -60,3 +60,7 @@ Adds a regular property to the target(s) (will not be automatically called if it
 ```js
 console.log(object[property])
 ```
+
+## Advanced usage and `options`
+
+List out the other available options... also `getRegistered` and `addWithSharedSymbolName` (link to metho-string and metho-array as example of how to use)
