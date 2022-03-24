@@ -95,14 +95,3 @@ export function addWithSharedSymbolName(target, func, symbolName) {
 	}
 	return ret
 }
-
-// TODO - see below for stuff necessary for upcoming method 'name' sharing between metho-string and metho-array,
-// whilst retaining ability for each module to be use separately without polluting the other's target prototype
-
-// Pseudo code for adding a shared metho method (might already be registered elsewhere)
-
-// * check for existence or registered symbol/function already being used
-// * if we're adding a metho with params, the existing function should already cope with
-//   the new target (maybe using this[Metho.data]), so simply change the registered
-//   function's targets to include new one
-// * otherwise, attach use Metho.add appropriately, including {useSymbol:registeredSymbol} in options
