@@ -72,13 +72,13 @@ export function addSimple(
 	return s
 }
 
-export const registered = name => registry[name]
+export const getRegistered = name => registry[name]
 
 const sanitiseTargets = targets => (Array.isArray(targets) && targets.prototype) ? targets : [targets]
 const addToRegister = (name, item) => (registry[name] = item)
 
 export function addWithSharedSymbolName(target, func, symbolName) {
-	const isRegistered = registered(symbolName)
+	const isRegistered = getRegistered(symbolName)
 	let ret
 	if (isRegistered) {
 		if (!func.length) {
