@@ -76,6 +76,9 @@ This allows an existing Symbol to be used insteaf of a new one being created. Th
 
 ### `data`
 This is a symbol created by Metho for the intended purpose of being a key to store arbitary 'data' on a target object
+```js
+myTarget[Metho.data] = "Arbitrary value"
+```
 
 ### `getRegistered(name)`
 This will return the Symbol or function stored in the registry with the given name as key of
