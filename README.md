@@ -31,7 +31,7 @@ console.log("Hello World!"[upper][chunk(2)])  // ['HE', 'LL', 'O ', 'WO', 'RL', 
 Metho is fairly simple, and offers 4 basic functions for adding these 'dynamic properties' to your target object(s). All functions will return either a Symbol, or a function that returns a Symbol. These Symbols are the property 'names'.
 
 ### `add(targetOrTargets, function, [options={}])`
-This is probably the function you'll need most often. It will use either `addWithParams` or `addSimple` based on the number of arguments the passed function expects - 0 will cause `addSimple` to be used, anything else will cause `addWithParams` or `addProperty` to be used - based upon the state of `outerSyntax`. When added with option `outerSyntax` set to `true` - the syntax for your property will be that of a more regular function call:
+This is probably the function you'll need most often. It will use either `addWithParams` or `addSimple` based on the number of arguments the passed function expects - 0 will cause `addSimple` to be used, anything else will cause `addWithParams` or `addProperty` to be used - based upon the state of the `outerSyntax` option. When added with `outerSyntax` set to `true` - the syntax for your property will be that of a more regular function call:
 ```js
 // options.outerSyntax = false
 object[property(x)]
@@ -60,3 +60,34 @@ Adds a regular property to the target(s) (will not be automatically called if it
 ```js
 console.log(object[property])
 ```
+
+## Advanced usage and `options`
+
+Most, if not all of the below were added to facilitate the ability to have Metho 'methods' that can be shared between different targets in different libraries (e.g. the 'method' would acquire more capabilities when a second library is imported that uses it). For an example of this in action, please refer to the [metho-string](https://github.com/jonrandy/metho-string) and [metho-array](https://github.com/jonrandy/metho-array) libraries - where this functionality is used to create shared 'methods' such as `reverse` and `chunk`.
+
+### Option `symbolName`
+This is used to give a name to the generated Symbol (i.e. when it is created with `new Symbol(symbolName`)
+
+### Option `register`
+Used to internally register the created/used `Symbol` (or function) in an internal registry within Metho - used in conjunction `symbolName` which will become the 'key' in the registry
+
+### Option `useSymbol`
+This allows an existing Symbol to be used insteaf of a new one being created. This is available only for `addProperty` and `addSimple` - meaning that it can also be passed to `add`
+
+### `data`
+This is a symbol created by Metho for the intended purpose of being a key to store arbitary 'data' on a target object
+```js
+myTarget[Metho.data] = "Arbitrary value"
+```
+
+### `getRegistered(name)`
+This will return the Symbol or function stored in the registry with the given name as key of
+
+### `addWithSharedSymbolName(target, function, symbolName)`
+A convenience function to assist when adding new 'methods' to new targets, where the 'method' may already be in existence. This is best understood in conjunction with `metho-string` and `metho-array` mentioned above
+
+
+
+
+
+List out the other available options... also `Metho.data`, `getRegistered` and `addWithSharedSymbolName` (link to metho-string and metho-array as example of how to use)
