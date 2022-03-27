@@ -72,7 +72,7 @@ This is used to give a name to the generated Symbol (i.e. when it is created wit
 Used to internally register the created/used `Symbol` (or function) in an internal registry within Metho - used in conjunction `symbolName` which will become the 'key' in the registry
 
 ### Option `useSymbol`
-This allows an existing Symbol to be used insteaf of a new one being created. This is available only for `addProperty` and `addSimple` - meaning that it can also be passed to `add`
+This allows an existing Symbol to be used instead of a new one being created. This is available only for `addProperty` and `addSimple` - meaning that it can also be passed to `add`
 
 ### `data`
 This is a symbol created by Metho for the intended purpose of being a key to store arbitary 'data' on a target object
