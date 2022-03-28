@@ -81,7 +81,7 @@ myTarget[Metho.data] = "Arbitrary value"
 ```
 
 ### `getRegistered(name)`
-This will return the Symbol or function stored in the registry with the given name as key of
+This will return the Symbol or function stored in the registry with the given name as key
 
 ### `addWithSharedSymbolName(target, function, symbolName)`
 A convenience function to assist when adding new 'methods' to new targets, where the 'method' may already be in existence. This is best understood in conjunction with `metho-string` and `metho-array` mentioned above
