@@ -1,6 +1,6 @@
 # Metho - A new method for methods
 
-A small library to allow you to safely add 'dynamic properties' to objects, with the help of Symbols. This is useful for 'monkey patching' native JavaScript types to give them new capabilities (see [metho-number](https://github.com/jonrandy/metho-number), [metho-set](https://github.com/jonrandy/metho-set), [metho-function](https://github.com/jonrandy/metho-function), [metho-array](https://github.com/jonrandy/metho-array), and [metho-string](https://github.com/jonrandy/metho-string)).
+A small library to allow you to safely add 'dynamic properties' to objects, with the help of Symbols. This is useful (among other things) for 'monkey patching' native JavaScript types to give them new capabilities (see [metho-number](https://github.com/jonrandy/metho-number), [metho-set](https://github.com/jonrandy/metho-set), [metho-function](https://github.com/jonrandy/metho-function), [metho-array](https://github.com/jonrandy/metho-array), and [metho-string](https://github.com/jonrandy/metho-string)).
 
 Some examples of what is possible:
 
