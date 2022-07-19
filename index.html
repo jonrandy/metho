@@ -10,6 +10,16 @@
 	<script type="module">
 		import * as Metho from "./metho.js"
 
+		const first = Metho.addWithParams(
+			String.prototype,
+			function first(count=1) {
+				return this.slice(0, count)
+			}
+		)
+
+		console.log("World"[first])
+		console.log("World"[first(3)])
+
 		// const hexxy = Symbol('hexxy')
 
 		// const hex = Metho.add(Number.prototype, function hex() { return this.toString(16) }, {useSymbol: hexxy})
