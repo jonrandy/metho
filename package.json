@@ -1,6 +1,6 @@
 {
   "name": "metho",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Metho - A new method for methods",
   "main": "metho.js",
   "type": "module",
