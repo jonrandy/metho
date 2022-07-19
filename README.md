@@ -47,9 +47,11 @@ There is a slight performance hit when not using `outerSyntax` - hence the reaso
 **Important note** - it has been pointed out that functions with a default argument(s) that start from the first argument do not seem to work correctly with the `add` method. Whilst they do *seem* to behave oddly, they are actually behaving correctly as they do not actually *expect* any arguments (for a clearer explanation, see the information about [`function.length`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/length) on MDN). If you want to add such methods you should use the `addWithParams` method directly.
 
 ### `addWithParams(targetOrTargets, function, [options={}])`
-Adds a 'dynamic property` that can accept parameters
+Adds a 'dynamic property` that can accept parameters. If you wish to pass **no** parameters when calling it, you can simply omit the parentheses - this is particularly useful in the case of functions where all parameters have defaults or are entirely optional.
 ```js
-console.log(object[property(param1, param2)]
+console.log(object[property(param1, param2)]  // call the dynamic property and pass parameters
+console.log(object[propertyWithDefaultParams])  // equivalent to object[propertyWithDefaultParams()]
+
 ```
 
 ### `addSimple(targetOrTargets, function, [options={}])`

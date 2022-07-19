@@ -55,6 +55,7 @@ export function addWithParams(
 		},
 	}
 	buildTempMethod[methodName].targets = sanitiseTargets(targetOrTargets)
+	buildTempMethod[methodName].toString = ()=>buildTempMethod[methodName]()
 	register && addToRegister(symbolName, buildTempMethod[methodName])
 	return buildTempMethod[methodName]
 }
