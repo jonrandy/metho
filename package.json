@@ -1,6 +1,6 @@
 {
   "name": "metho",
-  "version": "0.0.7",
+  "version": "1.0.0",
   "description": "Metho - A new method for methods",
   "main": "metho.js",
   "type": "module",
@@ -19,7 +19,8 @@
     "methods",
     "object",
     "syntax",
-    "patching"
+    "patching",
+    "prototype"
   ],
   "author": "Jon Randy",
   "license": "MIT",
