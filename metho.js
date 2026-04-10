@@ -75,7 +75,8 @@ export function addSimple(
 
 export const getRegistered = name => registry[name]
 
-const sanitiseTargets = targets => (Array.isArray(targets) && targets.prototype) ? targets : [targets]
+// Make sure we have an array of targets
+const sanitiseTargets = targets => Array.isArray(targets) && targets !== Array.prototype ? targets : [targets]
 const addToRegister = (name, item) => (registry[name] = item)
 
 export function addWithSharedSymbolName(target, func, symbolName) {
