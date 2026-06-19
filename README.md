@@ -1,4 +1,36 @@
 
+<div align="right">
+  <details>
+    <summary >🌐 Language</summary>
+    <div>
+      <div align="center">
+        <a href="https://openaitx.github.io/view.html?user=jonrandy&project=metho&lang=en">English</a>
+        | <a href="https://openaitx.github.io/view.html?user=jonrandy&project=metho&lang=zh-CN">简体中文</a>
+        | <a href="https://openaitx.github.io/view.html?user=jonrandy&project=metho&lang=zh-TW">繁體中文</a>
+        | <a href="https://openaitx.github.io/view.html?user=jonrandy&project=metho&lang=ja">日本語</a>
+        | <a href="https://openaitx.github.io/view.html?user=jonrandy&project=metho&lang=ko">한국어</a>
+        | <a href="https://openaitx.github.io/view.html?user=jonrandy&project=metho&lang=hi">हिन्दी</a>
+        | <a href="https://openaitx.github.io/view.html?user=jonrandy&project=metho&lang=th">ไทย</a>
+        | <a href="https://openaitx.github.io/view.html?user=jonrandy&project=metho&lang=fr">Français</a>
+        | <a href="https://openaitx.github.io/view.html?user=jonrandy&project=metho&lang=de">Deutsch</a>
+        | <a href="https://openaitx.github.io/view.html?user=jonrandy&project=metho&lang=es">Español</a>
+        | <a href="https://openaitx.github.io/view.html?user=jonrandy&project=metho&lang=it">Italiano</a>
+        | <a href="https://openaitx.github.io/view.html?user=jonrandy&project=metho&lang=ru">Русский</a>
+        | <a href="https://openaitx.github.io/view.html?user=jonrandy&project=metho&lang=pt">Português</a>
+        | <a href="https://openaitx.github.io/view.html?user=jonrandy&project=metho&lang=nl">Nederlands</a>
+        | <a href="https://openaitx.github.io/view.html?user=jonrandy&project=metho&lang=pl">Polski</a>
+        | <a href="https://openaitx.github.io/view.html?user=jonrandy&project=metho&lang=ar">العربية</a>
+        | <a href="https://openaitx.github.io/view.html?user=jonrandy&project=metho&lang=fa">فارسی</a>
+        | <a href="https://openaitx.github.io/view.html?user=jonrandy&project=metho&lang=tr">Türkçe</a>
+        | <a href="https://openaitx.github.io/view.html?user=jonrandy&project=metho&lang=vi">Tiếng Việt</a>
+        | <a href="https://openaitx.github.io/view.html?user=jonrandy&project=metho&lang=id">Bahasa Indonesia</a>
+        | <a href="https://openaitx.github.io/view.html?user=jonrandy&project=metho&lang=as">অসমীয়া</
+      </div>
+    </div>
+  </details>
+</div>
+
+
 # Metho - A new method for methods
 
 <img align="right" height=100 src="https://user-images.githubusercontent.com/1510194/173243187-08fdcc0f-204d-43c0-b07e-5b7bcb2713a4.png">A small library to allow you to safely add 'dynamic properties' to objects, with the help of Symbols. This is useful (among other things) for 'monkey patching' native JavaScript types to give them new capabilities (see [metho-number](https://github.com/jonrandy/metho-number), [metho-set](https://github.com/jonrandy/metho-set), [metho-function](https://github.com/jonrandy/metho-function), [metho-array](https://github.com/jonrandy/metho-array), and [metho-string](https://github.com/jonrandy/metho-string)).
